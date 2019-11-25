@@ -75,7 +75,7 @@
     </style>
     <main>
         <div class="legend">
-            <h1>Keys</h1>
+            <h1>Gilbert's Piano Key</h1>
             <div>
                 <p>1</p>
                 <p>2</p>
@@ -165,6 +165,23 @@
 </body>
 
 <script>
+    function play(){
+       let tone = document.getElementById("tone");
+       tone.play();
+     }
+
+     window.addEventListener("keypress", function(e) {
+        const tone = document.querySelector(`tone[data-key="${e.keyCode}"]`);
+        if (!tone) return;
+        const pianoKey = document.querySelector(`.pianoKey[data-key="${e.keyCode}"]`);
+        tone.currentTime = 0;
+        pianoKey.classList.add("pressed");
+        tone.play();
+        setTimeout(function() {
+            pianoKey.classList.remove("pressed");
+        }, 300);
+     });
+     console.log('tone')
 </script>
 
 </html>
